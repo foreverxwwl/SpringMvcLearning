@@ -1,14 +1,15 @@
 package com.domain;
 
-import java.io.Serializable;
 
-/**
- * @outhor li
- * @create 2020-02-09 18:49
- */
-public class User implements Serializable {
+import java.io.Serializable;
+import java.util.Date;
+
+public class User implements Serializable{
+
     private String uname;
-    private String age;
+    private Integer age;
+
+    private Date date;
 
     public String getUname() {
         return uname;
@@ -18,19 +19,29 @@ public class User implements Serializable {
         this.uname = uname;
     }
 
-    public String getAge() {
+    public Integer getAge() {
         return age;
     }
 
-    public void setAge(String age) {
+    public void setAge(Integer age) {
         this.age = age;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     @Override
     public String toString() {
         return "User{" +
                 "uname='" + uname + '\'' +
-                ", age='" + age + '\'' +
+                ", age=" + age +
+                ", date=" + date +
                 '}';
     }
 }
+

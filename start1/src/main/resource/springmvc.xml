@@ -19,7 +19,17 @@
         <property name="suffix" value=".jsp"></property>
     </bean>
 
+    <!--配置类型转换器-->
+    <bean id="conversionService" class="org.springframework.context.support.ConversionServiceFactoryBean">
+        <!--注入转换器  是一个set集合-->
+        <property name="converters">
+            <set>
+                <!--设置自己写的转换器-->
+                <bean class="com.utils.StringToDataConverter"></bean>
+            </set>
+        </property>
+    </bean>
 
-    <!--开启注解支持-->
-    <mvc:annotation-driven ></mvc:annotation-driven>
+    <!--开启注解支持 开启事物转化器-->
+    <mvc:annotation-driven conversion-service="conversionService"></mvc:annotation-driven>
 </beans>
