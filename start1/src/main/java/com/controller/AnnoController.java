@@ -3,7 +3,9 @@ package com.controller;
 import com.domain.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.support.SessionStatus;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
@@ -16,6 +18,7 @@ import java.util.Map;
  */
 @Controller
 @RequestMapping("/anno")
+@SessionAttributes(value={"msg"})   // 把msg=美美存入到session域对中
 public class AnnoController {
 
     /**
@@ -114,13 +117,33 @@ public class AnnoController {
      */
     @RequestMapping("/testSessionAttributes")
     public String testSessionAttributes(Model model){
-        //存储到request域对象中
+        //存储到request域对象中 不用使用HttpServletRequest对象
         model.addAttribute("msg", "hh");
         return "success";
     }
 
+    /**
+     * 获取值
+     * @param modelMap
+     * @return
+     */
+    @RequestMapping(value="/getSessionAttributes")
+    public String getSessionAttributes(ModelMap modelMap){
+        System.out.println("getSessionAttributes...");
+        String msg = (String) modelMap.get("msg");
+        System.out.println(msg);
+        return "success";
+    }
 
-
-
-
+    /**
+     * 清除
+     * @param status
+     * @return
+     */
+    @RequestMapping(value="/delSessionAttributes")
+    public String delSessionAttributes(SessionStatus status){
+        System.out.println("getSessionAttributes...");
+        status.setComplete();
+        return "success";
+    }
 }
