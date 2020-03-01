@@ -1,0 +1,40 @@
+CREATE TABLE `product` (
+   `id` VARCHAR(32) NOT NULL,
+   `productNum` VARCHAR(50) NOT NULL,
+   `productName` VARCHAR(50) DEFAULT NULL,
+   `cityName` VARCHAR(50) DEFAULT NULL,
+   `DepartureTime` TIMESTAMP NULL DEFAULT NULL,
+   `productPrice` FLOAT DEFAULT NULL,
+   `productDesc` VARCHAR(500) DEFAULT NULL,
+   `productStatus` INT(11) DEFAULT NULL,
+   PRIMARY KEY (`id`),
+   UNIQUE KEY `product` (`id`,`productNum`)
+ ) ENGINE=INNODB DEFAULT CHARSET=utf8;
+
+CREATE TRIGGER `product_before_insert` BEFORE INSERT ON `product` FOR EACH ROW
+BEGIN
+    SET new.id = UUID();
+END
+
+DELIMITER ;;
+CREATE TRIGGER `foo_before_insert`
+BEFORE INSERT ON `product` FOR EACH ROW
+BEGIN
+  IF new.id IS NULL THEN
+    SET new.id = UUID();
+  END IF;
+END;;
+DELIMITER ;
+
+CREATE TABLE product(
+   id VARCHAR(32) NOT NULL,
+   productNum VARCHAR(50) NOT NULL,
+   productName VARCHAR(50) DEFAULT NULL,
+   cityName VARCHAR(50) DEFAULT NULL,
+   DepartureTime TIMESTAMP DEFAULT 'yyyy-mm-dd hh:mm:ss' NULL DEFAULT NULL,
+   productPrice FLOAT DEFAULT NULL,
+   productDesc VARCHAR(500) DEFAULT NULL,
+   productStatus INT(11) DEFAULT NULL,
+   PRIMARY KEY (id),
+   UNIQUE KEY product (id,productNum)
+ )
