@@ -34,4 +34,18 @@ public class UserController {
         userService.saveUser(userInfo);
         return "redirect:findAll";
     }
+
+    @RequestMapping("/findById")
+    public ModelAndView findById(String id){
+        ModelAndView modelAndView = new ModelAndView();
+        UserInfo userInfo = userService.findById(id);
+        modelAndView.addObject("user", userInfo);
+        modelAndView.setViewName("user-show1");
+        return modelAndView;
+    }
+    //查看用户和该用户没有的角色
+    @RequestMapping("/findUserByIdAndRloe")
+    public ModelAndView findUserByIdAndRole(){
+
+    }
 }

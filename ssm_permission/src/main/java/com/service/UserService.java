@@ -17,5 +17,5 @@ public interface UserService extends UserDetailsService {
     //保存用户
     public void saveUser(UserInfo userInfo);
     //查询用户详情
-    public void findById();
+    public UserInfo findById(String userId);
 }

@@ -75,8 +75,8 @@ public class UserServiceImpl implements UserService {
 
     //查询用户详情
     @Override
-    public void findById() {
-
+    public UserInfo findById(String userId) {
+        return userDao.findUserById(userId);
     }
 
 }

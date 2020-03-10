@@ -4,6 +4,7 @@ import com.domain.UserInfo;
 import com.service.UserService;
 import org.apache.ibatis.annotations.*;
 import org.springframework.security.core.parameters.P;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
@@ -11,6 +12,7 @@ import java.util.List;
  * @outhor li
  * @create 2020-03-06 16:04
  */
+@Repository
 public interface UserDao {
 
     @Select("select * from users where username=#{username}")
@@ -31,7 +33,7 @@ public interface UserDao {
     @Insert("insert into users(email,username,password,phoneNum,status) values(#{email},#{username},#{password},#{phoneNum},#{status}) ")
     public void saveUser(UserInfo userInfo);
 
-    @Select("select * from users where username=#{username}")
+    @Select("select * from users where id=#{id}")
     @Results({
             @Result(id = true, property = "id", column = "id"),
             @Result(property = "username", column = "username"),
