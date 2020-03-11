@@ -1,5 +1,6 @@
 package com.dao;
 
+import com.domain.Permission;
 import com.domain.Role;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
@@ -35,6 +36,12 @@ public interface RolesDao {
             @Result(property = "permissions", column = "id", javaType = java.util.List.class, many = @Many(select = "com.dao.PermissionsDao.findByRoleId"))
     })
     public Role findRolesById(String id);
+
+    @Select("select * from permission where id not in (select permissionId from role_permission where roleId=#{rolesId})")
+    public List<Permission> findOtherPermissions(String rolesId);
+
+    @Insert("insert into role_permission(permissionId, roleId) values(#{permissionId},#{roleId})")
+    public void addPermissionToRole(@Param("permissionId") String permissionId,@Param("roleId") String roleId);
 }
 
 

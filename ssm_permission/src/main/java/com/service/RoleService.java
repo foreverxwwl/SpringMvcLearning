@@ -1,5 +1,6 @@
 package com.service;
 
+import com.domain.Permission;
 import com.domain.Role;
 
 import java.util.List;
@@ -15,4 +16,8 @@ public interface RoleService {
     List<Role> findAll();
 
     public Role findById(String id);
+
+    public List<Permission> findOtherPermissions(String roleId);
+
+    public void addPermissionToRole(String roleId, List<String> permissionId);
 }

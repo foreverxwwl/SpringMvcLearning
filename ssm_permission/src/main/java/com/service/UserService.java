@@ -1,5 +1,6 @@
 package com.service;
 
+import com.domain.Role;
 import com.domain.UserInfo;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -18,4 +19,9 @@ public interface UserService extends UserDetailsService {
     public void saveUser(UserInfo userInfo);
     //查询用户详情
     public UserInfo findById(String userId);
+    //查询用户没有的角色
+    public List<Role> findOtherRoles(String userId);
+
+    public void addRoleToUser(String userId, String[] roleIds);
+
 }

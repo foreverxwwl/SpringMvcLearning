@@ -93,8 +93,7 @@
 			<!-- 内容头部 /-->
 
 			<form
-				action="${pageContext.request.contextPath}/user/addRoleToUser"
-				method="post">
+				action="${pageContext.request.contextPath}/user/addRoleToUser" method="post">
 				<!-- 正文区域 -->
 				<section class="content"> 
 				
