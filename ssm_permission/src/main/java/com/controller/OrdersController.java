@@ -32,7 +32,7 @@ public class OrdersController {
 //    }
 
     @RequestMapping("/findAll")
-    public ModelAndView findAll(@RequestParam(name = "page", required = true, defaultValue = "1") int page, @RequestParam(name = "pageSize", required = true) int size ) throws Exception {
+    public ModelAndView findAll(@RequestParam(name = "page", required = true, defaultValue = "1") Integer page, @RequestParam(name = "pageSize", required = true) Integer size ) throws Exception {
         ModelAndView modelAndView = new ModelAndView();
         List<Orders> orders = ordersService.findAll(page, size);
         //分页bean

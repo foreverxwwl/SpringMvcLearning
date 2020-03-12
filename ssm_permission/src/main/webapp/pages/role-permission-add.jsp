@@ -116,7 +116,7 @@
 								<c:forEach items="${permissionList}" var="permission">
 									<tr>
 										<td>
-										
+
 										<input name="ids" type="checkbox" value="${permission.id}">
 										
 										</td>
